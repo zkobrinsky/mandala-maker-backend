@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://your-app-name.herokuapp.com'
+    origins 'https://mandala-maker-frontend.herokuapp.com'
 
     resource '*',
       headers: :any,
