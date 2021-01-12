@@ -7,9 +7,9 @@ class SketchesController < ApplicationController
 
     def create
         sketch = Sketch.new(title: params[:title], reflections: params[:reflections])
-        # sketch.image.attach(params[:image])
-        # sketch.save
-        # render json: sketch, methods: [:image_thumbnail, :image_full], include: {:colors => {only: [:value]}}
+        sketch.image.attach(params[:image])
+        sketch.save
+        render json: sketch, methods: [:image_thumbnail, :image_full], include: {:colors => {only: [:value]}}
         render json: sketch
     end
 
