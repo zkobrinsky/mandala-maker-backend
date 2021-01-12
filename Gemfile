@@ -20,6 +20,10 @@ gem 'puma', '~> 3.11'
 gem 'image_magick'
 gem 'mini_magick', '~> 4.8'
 
+#aws
+gem 'aws-sdk-rails', '~> 3'
+gem 'aws-sdk-s3', '~> 1'
+
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 
