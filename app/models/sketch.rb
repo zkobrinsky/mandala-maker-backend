@@ -13,12 +13,15 @@ class Sketch < ApplicationRecord
 
     def image_thumbnail
         if self.image.attached?
+            #This actually works... need to prepend with correct server... removed Rails.application.routes.url_helpers
+            rails_representation_url((self.image.variant(:gravity=>"Center", resize: "800x800>")), only_path: true)
+            
             #actual asw link:
-            self.image.variant(:gravity=>"Center", resize: "800x800>").service_url
+            # self.image.variant(:gravity=>"Center", resize: "800x800>").service_url
             # Rails.application.routes.url_helpers.rails_blob_path(self.image, only_path: true)
             # url_for(self.image.variant(:gravity=>"Center", resize: "800x800>"))
             # rails_blob_path(self.image.variant(:gravity=>"Center", resize: "800x800>"))
-            # Rails.application.routes.url_helpers.rails_representation_url((self.image.variant(:gravity=>"Center", resize: "800x800>")), only_path: true)
+
         end
     end
 
