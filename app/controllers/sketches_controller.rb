@@ -10,7 +10,6 @@ class SketchesController < ApplicationController
         sketch.image.attach(params[:image])
         sketch.save
         render json: sketch, methods: [:image_thumbnail, :image_full], include: {:colors => {only: [:value]}}
-        render json: sketch
     end
 
     def show
