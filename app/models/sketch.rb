@@ -14,16 +14,14 @@ class Sketch < ApplicationRecord
     def image_thumbnail
         if self.image.attached?
             #This actually works... need to prepend with correct server... removed Rails.application.routes.url_helpers
-            "http://localhost:3001"+rails_representation_url((self.image.variant(:gravity=>"Center", resize: "800x800>")), only_path: true)
+            "https://mandala-maker.herokuapp.com"+rails_representation_url((self.image.variant(:gravity=>"Center", resize: "800x800>")), only_path: true)
 
         end
     end
 
     def image_full
         if self.image.attached?
-            # url_for(self.image.variant(:gravity=>"Center"))
             rails_representation_url(self.image.variant(:gravity=>"Center"))
-            # rails_blob_path(self.image.variant(:gravity=>"Center"))
         end
     end
 
