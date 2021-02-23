@@ -6,11 +6,13 @@ class SketchesController < ApplicationController
     end
 
     def create
-        sketch = Sketch.new(title: params[:title], reflections: params[:reflections])
-        sketch.image.attach(params[:image])
-        sketch.save
-        render json: sketch, methods: [:image_thumbnail, :image_full], include: {:colors => {only: [:value]}}
-    end
+        if params[:title] != Sketch.last.title
+            sketch = Sketch.new(title: params[:title], reflections: params[:reflections])
+            sketch.image.attach(params[:image])
+            sketch.save
+            render json: sketch, methods: [:image_thumbnail, :image_full], include: {:colors => {only: [:value]}}
+        end
+
 
     def show
         sketch = Sketch.find_by_id(params[:id])
