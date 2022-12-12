@@ -13,9 +13,12 @@ class Sketch < ApplicationRecord
 
     def image_thumbnail
         if self.image.attached?
-            #This actually works... need to prepend with correct server... removed Rails.application.routes.url_helpers
-            "https://mandala-maker.herokuapp.com"+rails_representation_url((self.image.variant(:gravity=>"Center", resize: "800x800>")), only_path: true)
-
+            if (Rails.env === 'development')
+                rails_representation_url(self.image.variant(:gravity=>"Center", resize: "800x800>"))
+            else 
+                #This actually works... need to prepend with correct server... removed Rails.application.routes.url_helpers
+                "https://mandala-maker.herokuapp.com"+rails_representation_url((self.image.variant(:gravity=>"Center", resize: "800x800>")), only_path: true)
+            end
         end
     end
 

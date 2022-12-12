@@ -12,6 +12,7 @@ class SketchesController < ApplicationController
             sketch.save
             render json: sketch, methods: [:image_thumbnail, :image_full], include: {:colors => {only: [:value]}}
         end
+    end
 
 
     def show
